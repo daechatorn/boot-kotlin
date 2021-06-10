@@ -18,6 +18,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<kotlin.version>1.5.10</kotlin.version>
+		<spring-cloud.version>2020.0.3</spring-cloud.version>
 	</properties>
 
 	<dependencies>
@@ -68,6 +69,17 @@
 			<artifactId>jackson-module-kotlin</artifactId>
 		</dependency>
 
+		<!-- Hytrix for circuit -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+			<version>1.4.7.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+			<version>2.2.2.RELEASE</version>
+		</dependency>
 
 		<!-- Database-->
 		<!-- exclude tomcat jdbc connection pool, use HikariCP -->
@@ -123,6 +135,18 @@
 		</dependency>
 
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>

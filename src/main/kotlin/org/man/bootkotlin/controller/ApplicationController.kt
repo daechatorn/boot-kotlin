@@ -41,4 +41,12 @@ class ApplicationController (val applicationRepository: ApplicationRepository,
         return ResponseEntity.ok(responseModel)
     }
 
+    @GetMapping("/v3/poc/call")
+    fun getPocCallV3(): ResponseEntity<ResponseModel<String>> {
+        println("Incoming request on poc call")
+        val responseModel = ResponseModel<String>(1000)
+        responseModel.dataObj = bootKotlinMockService.getBootKotlinMockV1WithRestV2WithCircuitBreaker()
+        return ResponseEntity.ok(responseModel)
+    }
+
 }

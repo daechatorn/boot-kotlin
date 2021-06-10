@@ -1,5 +1,6 @@
 package org.man.bootkotlin.config
 
+import com.netflix.hystrix.exception.HystrixRuntimeException
 import org.man.bootkotlin.model.ResponseModel
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -13,7 +14,7 @@ class GlobalExceptionHandler {
 
     private val log = getLogger { }
 
-    @ExceptionHandler(ResourceAccessException::class, HttpServerErrorException::class, HttpServerErrorException.GatewayTimeout::class)
+    @ExceptionHandler(HystrixRuntimeException::class, ResourceAccessException::class, HttpServerErrorException::class, HttpServerErrorException.GatewayTimeout::class)
     fun resourceRequestHandler(ex: Exception): ResponseEntity<ResponseModel<Any>> {
         log.error("Resource access exception: ", ex)
         return ResponseEntity(ResponseModel(2001), HttpStatus.SERVICE_UNAVAILABLE)
