@@ -42,9 +42,19 @@ management:
 #RestTemplate Configuration
 rest:
   timeout:
-    connection: 5000
-    read: 55000
-    request: 5000
+    connection: 2000
+    read: 2000 #Wait time
+    request: 2000
+  connection:
+    maxPerRoute: 50
+    maxTotal: 100
+
+#RestTemplate Configuration Other Timeout
+rest-other-timeout:
+  timeout:
+    connection: 30000
+    read: 30000 #Wait time
+    request: 30000
   connection:
     maxPerRoute: 50
     maxTotal: 100
