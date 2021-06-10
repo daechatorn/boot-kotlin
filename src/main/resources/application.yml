@@ -1,0 +1,50 @@
+server:
+  port: 8443
+  servlet:
+    context-path: /boot-kotlin
+
+spring:
+  application:
+    name: boot-kotlin
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    jdbc-url: jdbc:mysql://localhost:3306/kotlin_application?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
+    # HikariCP Connection pool
+    type: com.zaxxer.hikari.HikariDataSource
+    connectionTimeout: 30000
+    validationTimeout: 5000
+    idleTimeout: 60000
+    maxLifetime: 1800000
+    maximumPoolSize: 10
+    initializationFailTimeout: 1
+  flyway:
+    url: ${spring.datasource.jdbc-url}
+    location: classpath:db/migration
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+
+management:
+  server:
+    port: 18443
+  health:
+    defaults:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: env,metrics,loggers,httptrace,threaddump,jolokia,flyway,heapdump,info,refresh,health,auditevents,hystrix.stream
+      base-path: /
+
+#RestTemplate Configuration
+rest:
+  timeout:
+    connection: 5000
+    read: 55000
+    request: 5000
+  connection:
+    maxPerRoute: 50
+    maxTotal: 100

@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: boot-kotlin
+  profiles:
+    active: local
+
+management:
+  security:
+    flag: false
+  endpoints:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+    web:
+      exposure:
+        include: env,metrics,loggers,httptrace,threaddump,jolokia,flyway,heapdump,info,refresh,health,auditevents,hystrix.stream
+      base-path: /
+
