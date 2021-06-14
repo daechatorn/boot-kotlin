@@ -58,3 +58,17 @@ rest-other-timeout:
   connection:
     maxPerRoute: 50
     maxTotal: 100
+
+# Logging
+logging:
+  level:
+    org:
+      man: DEBUG
+    springframework: WARN
+    cache: TRACE
+    com:
+      netflix:
+        config:
+          sources: WARN
+      zaxxer:
+        hikari: DEBUG

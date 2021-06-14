@@ -19,7 +19,8 @@ class ApplicationController (val applicationRepository: ApplicationRepository,
 
     @GetMapping("/v1/application")
     fun getEmployee(): ResponseEntity<ResponseModel<List<ApplicationInfo>>> {
-        log.debug("Incoming request on getEmployee")
+        log.info("Incoming request on getEmployee")
+        log.debug("Incoming request on getEmployee debug")
         val responseModel = ResponseModel<List<ApplicationInfo>>(1000)
         responseModel.dataObj = applicationRepository.getListOfApplication()
         return ResponseEntity.ok(responseModel)

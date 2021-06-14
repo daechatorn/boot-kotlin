@@ -2,7 +2,7 @@
 <configuration>
 
     <!-- Properties resources -->
-    <property resource="bootstrap.properties" />
+    <property resource="bootstrap.yml" />
     <property name="LOG_LEVEL_PATTERN" value="%clr(%5p) %clr([${spring.application.name:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-},%X{correlationId:-}]){yellow}"/>
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>

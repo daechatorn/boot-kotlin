@@ -1,6 +1,5 @@
+spring.application.name: boot-kotlin
 spring:
-  application:
-    name: boot-kotlin
   profiles:
     active: local
 
