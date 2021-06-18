@@ -1,5 +1,11 @@
 package org.man.bootkotlin.model.jpa
 
+import com.vladmihalcea.hibernate.type.json.JsonStringType
+import org.hibernate.annotations.Type
+import org.hibernate.annotations.TypeDef
+import org.hibernate.annotations.TypeDefs
+import org.man.bootkotlin.model.Address
+import org.man.bootkotlin.repository.AddressConverter
 import org.springframework.data.annotation.CreatedDate
 import java.io.Serializable
 import java.time.ZonedDateTime
@@ -22,4 +28,15 @@ data class ApplicationInfo(
     @CreatedDate
     @Column(name = "created_datetime")
     val createDatetime: ZonedDateTime = ZonedDateTime.now()
+) : Serializable
+
+@Entity
+@Table(name = "user_info")
+@TypeDefs(TypeDef(name = "json", typeClass = JsonStringType::class))
+data class UserInfoEntity(
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @Column(name = "user_id") val userId: Int = 0,
+    //@Convert(converter = AddressConverter::class) @Column(name = "address") val address: Address,
+    //we can used com.vladmihalcea instead of converter
+    @Type(type = "json") @Column(name = "address") val address: Address,
+    @Type(type = "json") @Column(name = "phone_no") val phoneNo: List<String>,
 ) : Serializable
