@@ -12,15 +12,14 @@ data class ApplicationInfo(
     @Column(name = "application_id")
     val applicationId: String,
     @Column(name = "thai_id")
-    val thaiId: Boolean,
+    val thaiId: String,
     @Column(name = "dob")
     val dob: String? = null,
     @Column(name = "email")
     val email: String? = null,
     @Column(name = "email_verified")
     val emailVerified: Boolean? = null,
-) : CreatedAt(), Serializable
-
-open class CreatedAt(
-    @CreatedDate @Column(name = "created_datetime") val createDatetime: ZonedDateTime? = ZonedDateTime.now()
+    @CreatedDate
+    @Column(name = "created_datetime")
+    val createDatetime: ZonedDateTime = ZonedDateTime.now()
 ) : Serializable

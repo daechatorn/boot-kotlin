@@ -8,8 +8,11 @@ import org.man.bootkotlin.repository.ApplicationRepository
 import org.man.bootkotlin.service.BootKotlinMockService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.time.ZonedDateTime
+import java.util.*
 
 @RestController
 @RequestMapping("/api")
@@ -27,6 +30,18 @@ class ApplicationController (val applicationRepository: ApplicationRepository,
         val responseModel = ResponseModel<List<ApplicationInfo>>(1000)
         //responseModel.dataObj = applicationRepository.getListOfApplication()
         responseModel.dataObj = applicationJpaRepository.findAll()
+        return ResponseEntity.ok(responseModel)
+    }
+
+    @PostMapping("/v1/application")
+    fun postApplication(): ResponseEntity<ResponseModel<ApplicationInfo>> {
+        log.info("Incoming request on postApplication")
+        val responseModel = ResponseModel<ApplicationInfo>(1000)
+        var applicationInfo = ApplicationInfo(
+            applicationId = UUID.randomUUID().toString(),
+            thaiId = "1101500716772"
+        )
+        responseModel.dataObj = applicationJpaRepository.save(applicationInfo)
         return ResponseEntity.ok(responseModel)
     }
 
