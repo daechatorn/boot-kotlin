@@ -6,9 +6,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.boot.runApplication
 import org.springframework.cloud.netflix.hystrix.EnableHystrix
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories
 
 @SpringBootApplication
 @EnableHystrix
+@EnableJpaRepositories
 @EnableConfigurationProperties(RestTemplateProperties::class, RestTemplatePropertiesOtherTimeout::class)
 class BootKotlinApplication
 
