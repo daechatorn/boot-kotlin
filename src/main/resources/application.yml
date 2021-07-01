@@ -48,9 +48,9 @@ management:
 #RestTemplate Configuration
 rest:
   timeout:
-    connection: 2000
-    read: 2000 #Wait time
-    request: 2000
+    connection: 15000
+    read: 15000 #Wait time
+    request: 15000
   connection:
     maxPerRoute: 50
     maxTotal: 100
